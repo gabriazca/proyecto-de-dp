@@ -1,23 +1,25 @@
-import java.util.*; 
+import java.util.*;
 
 /**
- * Compares two {@link ElectricBike} objects based on their id string in ascending order.
- * This can be used for sorting lists of electric bikes.
+ * Compara dos objetos {@link ElectricBike} según su cadena de texto
+ * identificadora, en orden ascendente.
+ * Puede utilizarse para ordenar listas de bicicletas eléctricas.
  * @author DP Clasess
  * @version 2026.10.13
  */
 public class ComparatorEBIdBike implements Comparator<ElectricBike>
 {
     /**
-     * Compares its two {@link ElectricBike} arguments for order.
-     * The comparison is based on the lexicographical order of their ids.
-     * @param eb1 The first electric bike to be compared.
-     * @param eb2 The second electric bike to be compared.
-     * @return A negative integer, zero, or a positive integer as the first
-     * bike's plate is less than, equal to, or greater than the second.
+     * Compara sus dos argumentos {@link ElectricBike} para establecer
+     * un orden.
+     * La comparación se basa en el orden lexicográfico de sus identificadores.
+     * @param eb1 La primera bicicleta eléctrica que se va a comparar.
+     * @param eb2 La segunda bicicleta eléctrica que se va a comparar.
+     * @return Un número negativo, cero o positivo según si la matrícula
+     * de la primera bicicleta es menor, igual o mayor que la segunda.
      */
-    public int compare(ElectricBike eb1, ElectricBike eb2){  
-        //TODO: Complete this code   
+    public int compare(ElectricBike eb1, ElectricBike eb2) {
+        // TODO: Completar este código
         return 0;
-    } 
+    }
 }
