@@ -19,7 +19,5 @@ public class ComparatorBikeStationId implements Comparator<BikeStation>
      * de la primera estación es menor, igual o mayor que el de la segunda.
      */
     public int compare(BikeStation st1, BikeStation st2) {
-        // TODO: Completar este código
-        return 0;
+       
     }
-ya sabes con clas

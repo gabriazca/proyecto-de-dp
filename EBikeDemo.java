@@ -137,8 +137,8 @@ public class EBikeDemo
         for (BikeStation station : stations){
             for (int i=0;i<DEMO.getNumDocksToCreate();i++){
                 // Creates Docks with varying speed and fee based on index 'i'.
-                Dock d = new Dock(station.getId() + "_00" + i,((i+1)*20),((i+1)*0.20f));
-                station.addDock(new Dock(station.getId() + "_00" + i,((i+1)*20),((i+1)*0.20f)));
+                Dock d = new Dock(station.getIdentificador() + "_00" + i,((i+1)*20),((i+1)*0.20f));
+                station.anadirDock(new Dock(station.getIdentificador() + "_00" + i,((i+1)*20),((i+1)*0.20f)));
             }
             // TODO: Complete the code here
         }    

@@ -1,6 +1,6 @@
-import java.util.*;
-import java.util.Collections;
-import java.util.stream.Collectors;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.Iterator;
 
 /**
  * Modela una estación de carga de vehículos eléctricos.
@@ -14,9 +14,12 @@ public class BikeStation
     // ATRIBUTOS
     // ==================================================
     /**
-     *  Identificador único de la estación, 
-     *  formado por dos letras que indican la ciudad y dos dígitos.
-     */
+     * Identificador único de la estación, compuesto por 4 caracteres:
+     * los 2 primeros son letras que indican la ciudad a la que pertenece
+     * la estación y los 2 últimos son dígitos que identifican la estación
+     * dentro de dicha ciudad.
+     * Ejemplo: CC01.
+      */
     private String idStation ;
     /**
      * Posición de la estación  en  la ciudad.
@@ -47,7 +50,7 @@ public class BikeStation
      */
     public BikeStation(String identificador, Location ubicacion)
     {
-        if(identificador.length() != 4 ) {
+        if(identificador==null || identificador.length() != 4 ) {
             throw new IllegalArgumentException(
                         "Identificador introducido no valido" + identificador);
         }
@@ -66,7 +69,7 @@ public class BikeStation
     /**
      * @return La coleccion de docks que tiene la estacion
      */
-    public Set<Dock> getDock(){
+    public Set<Dock> getDocks(){
        return  docks ;
     }
     /**
@@ -114,9 +117,21 @@ public class BikeStation
      * a este método.
      */
     public Dock getDockLibre()
-    {  // nescesito la clase dock 
-        return null;
-    }
+    { 
+     Dock resultado = null;
+     boolean encontrado = false;
+     
+     Iterator<Dock> it = docks.iterator();
+     
+    while (it.hasNext() && !encontrado){
+     Dock dock = it.next();
+     
+     if(dock.isFree()){
+        encontrado=true;
+        resultado = dock;
+        }}
+     return resultado;
+    }   
     /**
      * Establece la ubicación actual de la estación de carga.
      * @param ubicacion Dónde se encuentra. No puede ser null.
@@ -133,11 +148,28 @@ public class BikeStation
     // METODOS
     // ==================================================
     /**
+      * Devuelve el número total de bicicletas recargadas
+      * en todos los docks de la estación.
+      * @return Número total de bicicletas recargadas.
+     */
+    public int getNumberEVRecharged()
+    {
+      int numrecargas = 0;
+      for(Dock dock :docks){
+        numrecargas= numrecargas + dock.getNumerEVRecharged();
+        }
+      return numrecargas;
+    }
+    /**
      * Añade un nuevo {@link Dock} a la estación.
      * @param darsena El nuevo dock.
+     * @throws NullPointerException Si el dock es null.
      */
     public void anadirDock(Dock darsena)
     {
+     if (darsena == null) {
+        throw new NullPointerException("El dock no puede ser null");
+    }
         docks.add(darsena);
     }
     /**
@@ -178,11 +210,18 @@ public class BikeStation
 
     return resultado;
     }
-    @Override 
-    public String toString(){
-     return "BikeStation:" + getIdentificador() + "," + 
-     + "," + getLocation();
-    }
+    /**
+      * Devuelve una representación textual de la estación,
+      * incluyendo su identificador, el número de bicicletas
+      * recargadas y su localización.
+      * @return Una representación textual de la estación.
+     */
+   @Override
+   public String toString()
+   {
+    return "(BikeStation: " + getIdentificador() + ", "
+        + getNumberEVRecharged() + ", " + getLocation() + ")";
+   }
     
 
 }

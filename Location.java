@@ -1,6 +1,4 @@
 
-import java.util.*;
-
 /**
  * Modela una ubicación en una ciudad formada por una cuadrícula
  * bidimensional mediante coordenadas (x, y).
